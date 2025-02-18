@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticleById, getArticleCommentsById } from "./api";
+import CommentForm from "./CommentForm";
 
 export default function Article() {
   const { article_id } = useParams();
@@ -23,6 +24,10 @@ export default function Article() {
     }
   }, [article_id]);
 
+  const handleCommentPosted = (newComment) => {
+    setArticleComments((prevComments) => [newComment, ...prevComments]);
+  };
+
   return (
     <div key={article[0].article_id} className="article-card">
       <img src={article[0].article_img_url} alt="Article" />
@@ -38,12 +43,15 @@ export default function Article() {
 
       <div className="comments">
         <h3>Comments:</h3>
+        <CommentForm
+          articleId={article_id}
+          onCommentPosted={handleCommentPosted}
+        />
         {articleComments && articleComments.length > 0 ? (
           articleComments.map((comment) => (
             <div key={comment.comment_id} className="comment-card">
               <div>{comment.body}</div>
-              <div>By: {comment.author}</div>
-              <div>{new Date(comment.created_at).toLocaleDateString()}</div>
+              <div>Author: {comment.author}</div>
             </div>
           ))
         ) : (

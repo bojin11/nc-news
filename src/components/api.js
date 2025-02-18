@@ -27,3 +27,14 @@ export const getArticleCommentsById = (article_id) => {
     return res.data.comments;
   });
 };
+
+export const postComment = (article_id, comment) => {
+  return ncNewsApi
+    .post(`/articles/${article_id}/comments`, {
+      author: "jessjelly",
+      body: comment.body,
+    })
+    .then((res) => {
+      return res.data.comment;
+    });
+};
