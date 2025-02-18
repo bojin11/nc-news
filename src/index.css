@@ -187,12 +187,60 @@ button:focus-visible {
 
 .comment-card .author {
   font-weight: 600;
-  color: #0070f3;
 }
 
 .comment-card .created-at {
   font-size: 0.85rem;
-  color: #666;
+  color: #000000;
+}
+
+.comment-form-container {
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form-container label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.comment-form-container textarea {
+  width: 80%;
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+.comment-form-container .error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.comment-form-container button {
+  width: 90%;
+  padding: 10px 20px;
+  background-color: #cf5c36;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-form-container button[disabled] {
+  background-color: #ccc;
 }
 
 @media (prefers-color-scheme: light) {
