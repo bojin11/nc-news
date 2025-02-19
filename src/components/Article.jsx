@@ -1,12 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getArticleById, getArticleCommentsById, deleteComment } from "./api";
+import {
+  getArticleById,
+  getArticleCommentsById,
+  deleteComment,
+  voteOnArticle,
+} from "./api";
 import CommentForm from "./CommentForm";
 
 export default function Article() {
   const { article_id } = useParams();
   const [article, setArticle] = useState([0]);
   const [articleComments, setArticleComments] = useState([]);
+  const [isVoting, setIsVoting] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (article_id) {
@@ -42,6 +49,22 @@ export default function Article() {
       });
   };
 
+  const handleVote = (increment) => {
+    setIsVoting(true);
+    voteOnArticle(article[0].article_id, increment)
+      .then((updatedArticle) => {
+        setArticle([updatedArticle]);
+        setError("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Failed to update votes, please try again.");
+      })
+      .finally(() => {
+        setIsVoting(false);
+      });
+  };
+
   return (
     <div key={article[0].article_id} className="article-card">
       <img src={article[0].article_img_url} alt="Article" />
@@ -53,7 +76,16 @@ export default function Article() {
       <div className="created-at">
         Created at: {new Date(article[0].created_at).toLocaleDateString()}
       </div>
-      <div className="votes">Votes: {article[0].votes}</div>
+      <div className="votes">
+        <span>Votes: {article[0].votes}</span>
+        <button
+          className="vote-button"
+          onClick={() => handleVote(1)}
+          disabled={isVoting}
+        >
+          ❤️
+        </button>
+      </div>
 
       <div className="comments">
         <h3>Comments:</h3>
