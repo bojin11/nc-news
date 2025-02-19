@@ -42,3 +42,13 @@ export const postComment = (article_id, comment) => {
 export const deleteComment = (comment_id) => {
   return ncNewsApi.delete(`/comments/${comment_id}`);
 };
+
+export const voteOnArticle = (article_id, inc_votes) => {
+  return ncNewsApi
+    .patch(`/articles/${article_id}`, {
+      inc_votes: inc_votes,
+    })
+    .then((res) => {
+      return res.data.article;
+    });
+};
