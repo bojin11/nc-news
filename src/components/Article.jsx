@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getArticleById, getArticleCommentsById } from "./api";
+import { getArticleById, getArticleCommentsById, deleteComment } from "./api";
 import CommentForm from "./CommentForm";
 
 export default function Article() {
@@ -28,6 +28,20 @@ export default function Article() {
     setArticleComments((prevComments) => [newComment, ...prevComments]);
   };
 
+  const handleDeleteComment = (comment_id) => {
+    deleteComment(comment_id)
+      .then(() => {
+        setArticleComments((prevComments) =>
+          prevComments.filter((comment) => comment.comment_id !== comment_id)
+        );
+        alert("Comment deleted successfully");
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Failed to delete comment, please try again");
+      });
+  };
+
   return (
     <div key={article[0].article_id} className="article-card">
       <img src={article[0].article_img_url} alt="Article" />
@@ -52,6 +66,14 @@ export default function Article() {
             <div key={comment.comment_id} className="comment-card">
               <div>{comment.body}</div>
               <div>Author: {comment.author}</div>
+              {comment.author === "jessjelly" && (
+                <button
+                  className="delete-comment-button"
+                  onClick={() => handleDeleteComment(comment.comment_id)}
+                >
+                  Delete Comment
+                </button>
+              )}
             </div>
           ))
         ) : (
