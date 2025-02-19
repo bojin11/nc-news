@@ -70,7 +70,7 @@ export default function Article() {
   return (
     <div>
       {loading ? (
-        <p>Loading article...</p>
+        <p className="loading">Loading article...</p>
       ) : (
         <div key={article[0].article_id} className="article-card">
           <img src={article[0].article_img_url} alt="Article" />
