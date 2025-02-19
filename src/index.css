@@ -274,6 +274,10 @@ button:focus-visible {
   font-size: 14px;
 }
 
+.loading {
+  color: white;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #000000;

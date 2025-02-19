@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div>
       {loading ? (
-        <p>Loading articles...</p>
+        <p className="loading">Loading articles...</p>
       ) : (
         <div className="articles">
           <div className="article-card-container">

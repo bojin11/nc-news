@@ -14,7 +14,7 @@ export default function Users() {
   return (
     <div>
       {loading ? (
-        <p>Loading users...</p>
+        <p className="loading">Loading users...</p>
       ) : (
         <div className="users">
           <div className="user-card-container">
