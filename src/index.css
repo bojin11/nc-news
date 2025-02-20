@@ -367,6 +367,40 @@ h3 {
   background-color: #b6411a;
 }
 
+.app__light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.app__light h1,
+.app__light h2 {
+  color: #000000;
+}
+
+.button__light {
+  background-color: #f0f0f0;
+  color: #cf5c36;
+}
+
+.app__dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.app__dark {
+  color: #000000;
+}
+
+.app__dark h1,
+.app__dark h2 {
+  color: #ffffff;
+}
+
+.button__dark {
+  background-color: #cf5c36;
+  color: #fff;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #000000;

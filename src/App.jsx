@@ -3,15 +3,19 @@ import "./App.css";
 import Home from "./components/Home";
 import Article from "./components/Article";
 import Users from "./components/Users";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import Topics from "./components/Topics";
+import { ThemeContext } from "./contexts/Theme";
+import ToggleTheme from "./components/ToggleTheme";
 
 function App() {
+  const { theme } = useContext(ThemeContext);
   const [selectedButton, setSelectedButton] = useState("");
   return (
-    <div className="App">
+    <div className={`app__${theme}`}>
+      <ToggleTheme />
       <Header />
       <Router>
         <NavBar
