@@ -52,3 +52,15 @@ export const voteOnArticle = (article_id, inc_votes) => {
       return res.data.article;
     });
 };
+
+export const getTopics = () => {
+  return ncNewsApi.get("/topics").then((res) => {
+    return res.data.topics;
+  });
+};
+
+export const getArticlesByTopic = (topic) => {
+  return ncNewsApi
+    .get(`/articles?topic=${topic}`)
+    .then((res) => res.data.articles);
+};
